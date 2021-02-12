@@ -32,6 +32,42 @@ window.onload = function () {
     console.log("Database opened succesfully");
     db = openRequest.result;
 	fillCalendar();
+
+	
+	for (let td of tableDataElements) {
+		td.setAttribute('data-allowdrop', 'true');
+		td.addEventListener('dragover', allowDrop);
+		td.ondragstart = drag;
+		td.addEventListener('drop', drop);
+	}	
+
+	function allowDrop (e) {
+		e.preventDefault();
+	} 
+	
+	function drag (e) {
+		e.dataTransfer.setData('headers', e.currentTarget.getAttribute('headers'));
+	}
+	
+	function drop (e) {
+		let headers = e.dataTransfer.getData('headers');
+		e.target.appendChild(document.querySelector(`td[headers="${headers}"]`).firstChild);
+		let transaction = db.transaction(['events'], 'readwrite');
+		let eventStore = transaction.objectStore('events');
+		let index = eventStore.index('dayTime');
+		let eventStoreDayTimeRequest = index.get(headers);
+		eventStoreDayTimeRequest.onsuccess = () => {
+			const data = eventStoreDayTimeRequest.result;
+			data.dayTime = e.target.getAttribute('headers');
+			const updateDayTimeRequest = eventStore.put(data);
+			updateDayTimeRequest.onsuccess = () => {
+			  console.log('DayTime is update!');
+			};
+		}
+		transaction.oncomplete = function () {
+		  console.log('Complete!');
+		};
+	}
   };
  
   
@@ -72,40 +108,6 @@ window.onload = function () {
 	  
 	  
 	  
-	  for (let td of tableDataElements) {
-		  td.setAttribute('data-allowdrop', 'true');
-		  td.addEventListener('dragover', allowDrop);
-		  td.ondragstart = drag;
-		  td.addEventListener('drop', drop);
-	  }	
-
-	  function allowDrop (e) {
-		  e.preventDefault();
-	  } 
-	  
-	  function drag (e) {
-		  e.dataTransfer.setData('headers', e.currentTarget.getAttribute('headers'));
-	  }
-	  
-	  function drop (e) {
-		  let headers = e.dataTransfer.getData('headers');
-		  e.target.appendChild(document.querySelector(`td[headers="${headers}"]`).firstChild);
-		  let transaction = db.transaction(['events'], 'readwrite');
-	      let eventStore = transaction.objectStore('events');
-	      let index = eventStore.index('dayTime');
-		  let eventStoreDayTimeRequest = index.get(headers);
-		  eventStoreDayTimeRequest.onsuccess = () => {
-			  const data = eventStoreDayTimeRequest.result;
-			  data.dayTime = e.target.getAttribute('headers');
-			  const updateDayTimeRequest = eventStore.put(data);
-			  updateDayTimeRequest.onsuccess = () => {
-				console.log('DayTime is update!');
-			  };
-		  }
-	      transaction.oncomplete = function () {
-		    console.log('Complete!');
-	      };
-	  }
     };
   };
   
