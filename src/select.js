@@ -1,4 +1,9 @@
+import './styles/select.scss'
+
 let show = true;
+
+const selectBox =  document.querySelector('.selectBox');
+selectBox.addEventListener('click', showCheckboxes);
 
 function showCheckboxes() {
     let checkboxes = document.getElementById("checkBoxes");

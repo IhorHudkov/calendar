@@ -1,3 +1,5 @@
+import './styles/create-event.scss'
+
 const form = document.forms.eventForm;
 const nameInput = form.name;
 const dayInput = form.day;
@@ -76,6 +78,6 @@ window.onload = function () {
   };
 
   function displayCalendar() {
-    window.location.href = "file:///C:/Users/Ihor/Desktop/calendar/index.html";   
+    window.location.href = "index.html";   
   };
 };

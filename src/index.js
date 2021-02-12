@@ -1,3 +1,5 @@
+import './styles/index.scss'
+
 let db;
 const tableDataElements = document.querySelectorAll('td');
 
