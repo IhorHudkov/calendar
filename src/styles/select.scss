@@ -1,0 +1,50 @@
+
+        .multipleSelection {
+			
+            background-color: #fff;
+			position: relative;
+			width: 1%;
+			min-width: 0;
+			flex: 1 1 auto;
+        } 
+  
+        .selectBox { 
+            position: relative; 
+        } 
+  
+        .selectBox select { 
+            width: 100%; 
+			margin-left: -1px;
+			border-top-left-radius: 0;
+			border-bottom-left-radius: 0;
+        } 
+  
+        .overSelect { 
+            position: absolute; 
+            left: 0; 
+            right: 0; 
+            top: 0; 
+            bottom: 0; 
+        } 
+  
+        #checkBoxes { 
+            display: none; 
+			background-color: #fff;
+            border: 1px solid #ced4da; 
+			position: fixed;
+			width: 225.5px;
+        } 
+  
+        #checkBoxes label { 
+			padding: 8px;
+            display: block; 
+        } 
+		
+		#checkBoxes label input{ 
+			margin-right: .5rem;
+        } 
+		
+		.input-group{
+			align-items: flex-start;
+		}
+  
