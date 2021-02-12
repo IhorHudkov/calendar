@@ -114,7 +114,7 @@ window.onload = function () {
   function deleteItem(e) {
 	
 	
-	let eventId = Number((e.target.parentNode.getAttribute('id')).match(/\d+/));
+	let eventId = Number((e.currentTarget.parentNode.getAttribute('id')).match(/\d+/));
 	let transaction = db.transaction(['events'], 'readwrite');
 	let eventStore = transaction.objectStore('events');
 	let request = eventStore.delete(eventId);

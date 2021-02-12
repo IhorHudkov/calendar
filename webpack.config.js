@@ -78,6 +78,8 @@ const main = {
                 collapseWhitespace: isProd
             }
         }),
+
+        
         
         new CopyWebpackPlugin({patterns:[
             {
@@ -138,7 +140,7 @@ const create_event = {
             }
         }),
 
-        new CleanWebpackPlugin(),
+        
         
         new CopyWebpackPlugin({patterns:[
             {
