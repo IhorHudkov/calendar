@@ -9,7 +9,7 @@
       integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
       crossorigin="anonymous"
     />
-    
+    <link rel="icon" href="favicon.ico" type="image/ico">
     <title>Calendar</title>
   </head>
   <body>
@@ -18,12 +18,63 @@
         <div class="container-fluid">
           <span class="navbar-brand mb-0 h1">Calendar</span>
           <div class="btn__group">
-            <select class="select-names">
-              <option value="volvo">All members</option>
-              <option value="saab">Jhon</option>
-              <option value="opel">Mila</option>
-              <option value="audi">Sam</option>
-            </select>
+            <div class="input-group mb-3 select-names">
+              <label class="input-group-text" for="participants"
+                >Participants</label
+              >
+              <div class="multipleSelection">
+                <div class="selectBox">
+                  <select class="form-select" id="participants">
+                    <option selected>Choose...</option>
+                  </select>
+                  <div class="overSelect"></div>
+                </div>
+                <div id="checkBoxes">
+                  <label for="first">
+                    <input type="checkbox" id="first" />
+                    All members
+                  </label>
+                  <label for="second">
+                    <input type="checkbox" id="second" />
+                    Jhon
+                  </label>
+                  <label for="third">
+                    <input type="checkbox" id="third" checked/>
+                    Mila
+                  </label>
+                  <label for="fourth">
+                    <input type="checkbox" id="fourth" checked/>
+                    Sam
+                  </label>
+                  <label for="fifth">
+                    <input type="checkbox" id="fifth" checked/>   
+                    Molly
+                  </label>
+                  <label for="sixth">
+                    <input type="checkbox" id="sixth" checked/>
+                    Garry
+                  </label>
+                  <label for="seventh">
+                    <input type="checkbox" id="seventh" checked/>
+                    Liza
+                  </label>
+                  <label for="eighth">
+                    <input type="checkbox" id="eighth" checked/>
+                    Mike
+                  </label>
+                </div>
+              </div>
+            </div>
+            <!-- <select class="select-names">
+              <option value="allMembers">All members</option>
+              <option value="Jhon">Jhon</option>
+              <option value="Mila">Mila</option>
+              <option value="Sam">Sam</option>
+              <option value="Molly">Molly</option>
+              <option value="Garry">Garry</option>
+              <option value="Liza">Liza</option>
+              <option value="Mike">Mike</option>
+            </select> -->
             <a class="btn btn-success" href="create-event.html" role="button">New event +</a>
           </div>
         </div>

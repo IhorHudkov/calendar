@@ -1,6 +1,5 @@
 const path = require('path')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const TerserWebpackPlugin = require('terser-webpack-plugin')
@@ -52,7 +51,10 @@ const main = {
     
     context: path.resolve(__dirname, 'src'),
     entry: {
-        index: './index.js'        
+        base: './base.js',
+        array_compare: './array-compare.js',
+        calendar_select: './select-for-calendar.js',       
+        index: './index.js'
     },
     output: {
         filename: filename('js'),
@@ -112,8 +114,8 @@ const create_event = {
     
     context: path.resolve(__dirname, 'src'),
     entry: {
-        create_event: './create-event.js',
-        select: './select.js'
+        select: './select.js',
+        create_event: './create-event.js'
     },
     output: {
         filename: filename('js'),
@@ -126,10 +128,7 @@ const create_event = {
         }
     },
     optimization: optimization(),
-    devServer: {
-        port: 4200,
-        hot: isDev
-    },
+
 
     plugins: [
         new HTMLWebpackPlugin({
