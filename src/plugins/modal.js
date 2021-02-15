@@ -6,10 +6,10 @@ function _createModal(options) {
     modal.insertAdjacentHTML('afterbegin', `
      <div class="modal-overlay">
         <div class="modal-window">
-            <p>Are You sure You want to delete "Retrospective" event?</p>
+            ${options.content || ''}
             <div class="modal-buttons">
-            <button type="button" class="btn btn-danger" id="yes">Yes</button>
-            <button type="button" class="btn btn-outline-dark" id="no">No!</button>
+                <button type="button" class="btn btn-danger" id="yes">Yes</button>
+                <button type="button" class="btn btn-outline-dark" id="no">No!</button>
             </div>
         </div>
      </div> 
@@ -36,7 +36,7 @@ My$.modal = (options) => {
             }, ANIMATION_SPEED);
         },
         destroy() {
-            
+            $modal.parentNode.removeChild($modal);
         }
     }
 }

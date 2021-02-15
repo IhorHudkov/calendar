@@ -143,8 +143,13 @@ window.addEventListener('load', () => {
   
   function deleteItem(e) {
 
-	const target = e.currentTarget;
-	const modal = My$.modal();
+	const currentTarget = e.currentTarget;
+	const target = e.target;
+	const modal = My$.modal({
+		content: `
+			<p>Are You sure You want to delete "Retrospective" event?</p>
+		`
+	});
 	modal.open();
 	const yesBtn = document.querySelector('#yes');
 	const noBtn = document.querySelector('#no');
@@ -152,7 +157,7 @@ window.addEventListener('load', () => {
 	
 	yesBtn.addEventListener('click', () => {
 
-		let eventId = Number((target.parentNode.getAttribute('id')).match(/\d+/));
+		let eventId = Number((currentTarget.parentNode.getAttribute('id')).match(/\d+/));
 		let transaction = db.transaction(['events'], 'readwrite');
 		let eventStore = transaction.objectStore('events');
 		let request = eventStore.delete(eventId);
@@ -163,11 +168,13 @@ window.addEventListener('load', () => {
 		console.log("Delete!");
 		
 		modal.close();
+		modal.destroy();
 		
 	});
 
 	noBtn.addEventListener('click', () => {
 		modal.close();
+		modal.destroy();
 	});
 
   }
