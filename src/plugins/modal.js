@@ -8,8 +8,8 @@ function _createModal(options) {
         <div class="modal-window">
             <p>Are You sure You want to delete "Retrospective" event?</p>
             <div class="modal-buttons">
-            <button type="button" class="btn btn-danger">Yes</button>
-            <button type="button" class="btn btn-outline-dark">No!</button>
+            <button type="button" class="btn btn-danger" id="yes">Yes</button>
+            <button type="button" class="btn btn-outline-dark" id="no">No!</button>
             </div>
         </div>
      </div> 

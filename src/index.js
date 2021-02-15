@@ -142,17 +142,34 @@ window.addEventListener('load', () => {
   }
   
   function deleteItem(e) {
+
+	const target = e.currentTarget;
+	const modal = My$.modal();
+	modal.open();
+	const yesBtn = document.querySelector('#yes');
+	const noBtn = document.querySelector('#no');
+
 	
-	
-	let eventId = Number((e.currentTarget.parentNode.getAttribute('id')).match(/\d+/));
-	let transaction = db.transaction(['events'], 'readwrite');
-	let eventStore = transaction.objectStore('events');
-	let request = eventStore.delete(eventId);
-	transaction.oncomplete = function () {
-		e.target.parentNode.parentNode.setAttribute('data-allowdrop', 'true');
-		e.target.parentNode.remove();
-	};
-	console.log("Delete!");
+	yesBtn.addEventListener('click', () => {
+
+		let eventId = Number((target.parentNode.getAttribute('id')).match(/\d+/));
+		let transaction = db.transaction(['events'], 'readwrite');
+		let eventStore = transaction.objectStore('events');
+		let request = eventStore.delete(eventId);
+		transaction.oncomplete = function () {
+			target.parentNode.parentNode.setAttribute('data-allowdrop', 'true');
+			target.parentNode.remove();
+		};
+		console.log("Delete!");
+		
+		modal.close();
+		
+	});
+
+	noBtn.addEventListener('click', () => {
+		modal.close();
+	});
+
   }
  
  });
