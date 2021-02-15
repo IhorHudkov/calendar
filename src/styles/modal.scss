@@ -1,0 +1,61 @@
+.imodal {
+    &.open .modal-overlay,
+    &.open .modal-window {
+        opacity: 1;
+        z-index: 1000;
+    }
+    &.hide .modal-overlay,
+    &.hide .modal-window {
+        opacity: 1;
+        z-index: 1000;
+    }
+    &.open .modal-window {
+        transform: translateY(100px);
+    }
+    &.open .modal-overlay {
+        background: rgba($color: #ffffff, $alpha: .5);
+    }
+    &.hide .modal-window {
+        transform: translateY(-200px);
+    }
+    &.hide .modal-overlay {
+        background: rgba($color: #ffffff, $alpha: 0);
+    }
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba($color: #ffffff, $alpha: 0);
+    transition: .2s ease-in;
+}
+
+.modal-window {
+    max-width: 400px;
+    border-radius: 5px;
+    background: rgb(243, 243, 243);
+    box-shadow: 4px 4px 15px rgba(65, 105, 225, 0.363);
+    min-height: 200px;
+    margin: 0 auto;
+    padding: 30px;
+    font-size: 20px;
+    text-align: center;
+    transform: translateY(-200px);
+    transition: transform .2s ease-in;
+}
+
+.modal-buttons {
+    & button {
+        padding-left: 45px;
+        padding-right: 45px;
+        margin: .7rem .34rem;
+    }
+}
+
+.modal-window, .modal-overlay {
+    opacity: 0;
+    z-index: -1;
+}

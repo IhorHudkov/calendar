@@ -52,6 +52,7 @@ const main = {
     context: path.resolve(__dirname, 'src'),
     entry: {
         base: './base.js',
+        modal: './plugins/modal.js',
         array_compare: './array-compare.js',
         calendar_select: './select-for-calendar.js',       
         index: './index.js'

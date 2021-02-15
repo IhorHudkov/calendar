@@ -3,6 +3,8 @@ import './styles/index.scss'
 let db;
 let checkboxes = document.getElementById("checkBoxes");
 const tableDataElements = document.querySelectorAll('td');
+// const modal = My$.modal();
+// modal.open();
 
 
 window.addEventListener('load', () => {
