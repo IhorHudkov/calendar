@@ -1,9 +1,9 @@
 import './styles/select.scss';
 
 let show = true;
+
 const checkBoxList = document.querySelectorAll('input[type="checkbox"]');
 const selectBox = document.querySelector('.selectBox');
-
 const checkboxes = document.getElementById('checkBoxes');
 
 function showCheckboxes() {
@@ -22,10 +22,6 @@ selectBox.addEventListener('click', showCheckboxes);
 const checkBoxArray = Array.prototype.slice.call(checkBoxList);
 const allMemCheckBox = checkBoxArray.shift();
 
-console.clear();
-console.log(checkBoxArray);
-console.log(allMemCheckBox);
-
 allMemCheckBox.addEventListener('click', () => {
   if (allMemCheckBox.checked) {
     for (const item of checkBoxList) {
@@ -38,11 +34,11 @@ allMemCheckBox.addEventListener('click', () => {
   }
 });
 
-for (const i of checkBoxArray) {
-  i.addEventListener('click', () => {
+for (const item of checkBoxArray) {
+  item.addEventListener('click', () => {
     let count = 0;
-    for (const j of checkBoxArray) {
-      if (j.checked) {
+    for (const el of checkBoxArray) {
+      if (el.checked) {
         count += 1;
       }
     }
