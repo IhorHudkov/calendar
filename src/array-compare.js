@@ -1,15 +1,15 @@
-My$.arrCompare = function ( x, y ) {
-    if (x.length !== y.length) {
-        return false;
+const arrCompare = (x, y) => {
+  if (x.length !== y.length) {
+    return false;
+  }
+
+  for (let i = 0; i < x.length; i += 1) {
+    if (x[i] !== y[i]) {
+      return false;
     }
- 
-    for (let i = 0; i < x.length; i++) {
-        if (x[i] !== y[i]) {
-            return false;
-        }
-    }
+  }
 
-    return true;
-}
+  return true;
+};
 
-
+Object.assign(My$, { arrCompare });

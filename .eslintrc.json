@@ -1,0 +1,24 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true,
+        "node": true
+    },
+    "extends": [
+        "airbnb-base"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module"
+    },
+    "rules": {
+        "no-console": "off",
+        "no-mixed-spaces-and-tabs": "off",
+        "no-tabs":"off",
+        "no-undef": "off",
+        "no-restricted-syntax": "off"
+    },
+    "settings": {
+        "import/resolver": "webpack"
+    }
+}

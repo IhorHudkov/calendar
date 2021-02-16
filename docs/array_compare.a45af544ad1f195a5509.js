@@ -1,1 +1,0 @@
-My$.arrCompare=function(r,e){if(r.length!==e.length)return!1;for(let n=0;n<r.length;n++)if(r[n]!==e[n])return!1;return!0};

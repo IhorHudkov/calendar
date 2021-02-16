@@ -1,83 +1,74 @@
-import './styles/create-event.scss'
+import './styles/create-event.scss';
 
 const form = document.forms.eventForm;
 const nameInput = form.name;
 const dayInput = form.day;
 const timeInput = form.time;
 
-
 let db;
 
-window.onload = function () {
-  let openRequest = indexedDB.open("calendar", 1);
+window.onload = () => {
+  const openRequest = indexedDB.open('calendar', 1);
 
-  openRequest.onupgradeneeded = function () {
+  openRequest.onupgradeneeded = () => {
     db = openRequest.result;
-    let eventStore = db.createObjectStore("events", {
-      keyPath: "id",
+    const eventStore = db.createObjectStore('events', {
+      keyPath: 'id',
       autoIncrement: true,
     });
-    eventStore.createIndex("name", "name", { unique: false });
-    eventStore.createIndex("participants", "participants", { unique: false });
-    eventStore.createIndex("dayTime", "dayTime", { unique: true });
-    console.log("Database setup complete");
+    eventStore.createIndex('name', 'name', { unique: false });
+    eventStore.createIndex('participants', 'participants', { unique: false });
+    eventStore.createIndex('dayTime', 'dayTime', { unique: true });
+    console.log('Database setup complete');
   };
 
-  openRequest.onerror = function () {
-    console.error("Error", openRequest.error);
+  openRequest.onerror = () => {
+    console.error('Error', openRequest.error);
   };
 
-  openRequest.onsuccess = function () {
-    console.log("Database opened succesfully");
+  openRequest.onsuccess = () => {
+    console.log('Database opened succesfully');
     db = openRequest.result;
   };
 
   form.onsubmit = (e) => {
     e.preventDefault();
-	
-	const participantsCheckboxes = document.querySelectorAll('input[type="checkbox"]:checked');
-	
-	const participants = [];
-	
-	
-	for ( let item of participantsCheckboxes ) {
-		
-			let label = document.querySelector(`label[for="${item.id}"`);
-			participants.push( label.textContent.trim());
-		
-	}
-	
 
-    let event = {
+    const participantsCheckboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+
+    const participants = [];
+
+    participantsCheckboxes.forEach((item) => {
+      const label = document.querySelector(`label[for="${item.id}"`);
+      participants.push(label.textContent.trim());
+    });
+
+    const event = {
       name: nameInput.value,
-      participants: participants,
+      participants,
       dayTime: `${dayInput.value} ${timeInput.value}`,
     };
 
-    let transaction = db.transaction(["events"], "readwrite");
+    const transaction = db.transaction(['events'], 'readwrite');
 
-    let eventStore = transaction.objectStore("events");
+    const eventStore = transaction.objectStore('events');
 
-    let addRequest = eventStore.add(event);
-    addRequest.onsuccess = function () {
-      nameInput.value = "";
-      dayInput.value = "Choose...";
-      timeInput.value = "Choose...";
+    const addRequest = eventStore.add(event);
+    addRequest.onsuccess = () => {
+      nameInput.value = '';
+      dayInput.value = 'Choose...';
+      timeInput.value = 'Choose...';
     };
 
-    transaction.oncomplete = function () {
-      console.log("Transaction completed: database modification finished.");
-      displayCalendar();
+    transaction.oncomplete = () => {
+      console.log('Transaction completed: database modification finished.');
+      window.location.href = 'index.html';
     };
 
-    transaction.onerror = function () {
-	  let errHeader = document.querySelector('.error-msg');
-	  errHeader.setAttribute('style','display: block;');
-      console.log("Transaction not opened due to error");
+    transaction.onerror = () => {
+      const errHeader = document.querySelector('.error-msg');
+      errHeader.setAttribute('style', 'display: block;');
+      console.log('Transaction not opened due to error');
     };
-  };
-
-  function displayCalendar() {
-    window.location.href = "index.html";   
   };
 };

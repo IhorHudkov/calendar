@@ -1,1 +1,3 @@
-My$ = {}
+My$ = {};
+
+window.My$ = My$;
