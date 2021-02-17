@@ -1,45 +1,49 @@
 body {
-    background-color: #f8f9fa!important;
-    padding-top: 4em;
+  background-color: #f8f9fa !important;
+  padding-top: 4em;
 }
 
 .submit-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .form-container {
-    max-width: 400px;
-    padding: 2em;
-    margin: 0 auto;
-    border: 2px solid #b7bfc7;
-    border-radius: 1em;
+  max-width: 400px;
+  padding: 2em;
+  margin: 0 auto;
+  border: 2px solid #b7bfc7;
+  border-radius: 1em;
 }
 
-
 .text-field {
-    margin-bottom: 1em;
+  margin-bottom: 1em;
 }
 
 .error-msg {
-    display: none;
-    width: 100%;
-    padding: 8px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: rgb(250, 40, 40);
-  }
+  display: none;
+  width: 100%;
+  padding: 8px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgb(250, 40, 40);
+}
 
 .submit-wrapper button {
-	margin-right: .3rem;
+  margin-right: 0.3rem;
 }
 
 .submit-wrapper a {
-	margin-left: .3rem;
+  margin-left: 0.3rem;
 }
 
 .submit-wrapper {
-	margin-top: 2rem;
+  margin-top: 2rem;
+}
+
+.input-error {
+  outline: 1px dashed rgb(250, 40, 40);
+  outline-offset: -5px;
 }

@@ -22,11 +22,13 @@ table{
 
 .td-content {
     width: 100%;
+    height: 100%;
     padding: 8px;
 	background-color: yellow;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+    word-break: break-all;
 }
 
 .td__delete-btn {
@@ -35,6 +37,9 @@ table{
 
 .table td {
     padding: 0;
+    max-width: 150px;
+    min-height: 41px;
+    height: 1px;
 }
 
 .btn__group {

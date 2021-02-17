@@ -16,7 +16,8 @@
         "no-mixed-spaces-and-tabs": "off",
         "no-tabs":"off",
         "no-undef": "off",
-        "no-restricted-syntax": "off"
+        "no-restricted-syntax": "off",
+        "no-bitwise": "off"
     },
     "settings": {
         "import/resolver": "webpack"

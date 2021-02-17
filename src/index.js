@@ -51,7 +51,6 @@ window.addEventListener('load', () => {
 	  eventStore.delete(eventId);
 
       transaction.oncomplete = () => {
-		  target.parentNode.parentNode.setAttribute('data-allowdrop', 'true');
 		  target.parentNode.remove();
 	  };
 

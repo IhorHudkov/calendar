@@ -5,6 +5,33 @@ const nameInput = form.name;
 const dayInput = form.day;
 const timeInput = form.time;
 
+const isNameInputCorrect = () => {
+  if (!nameInput.value.trim()) {
+    nameInput.classList.add('input-error');
+    return false;
+  }
+  nameInput.classList.remove('input-error');
+  return true;
+};
+
+const isDayInputCorrect = () => {
+  if (dayInput.value === 'Choose...') {
+    dayInput.classList.add('input-error');
+    return false;
+  }
+  dayInput.classList.remove('input-error');
+  return true;
+};
+
+const isTimeInputCorrect = () => {
+  if (timeInput.value === 'Choose...') {
+    timeInput.classList.add('input-error');
+    return false;
+  }
+  timeInput.classList.remove('input-error');
+  return true;
+};
+
 let db;
 
 window.onload = () => {
@@ -33,6 +60,8 @@ window.onload = () => {
 
   form.onsubmit = (e) => {
     e.preventDefault();
+
+    if (!isNameInputCorrect() | !isDayInputCorrect() | !isTimeInputCorrect()) return;
 
     const participantsCheckboxes = document.querySelectorAll('input[type="checkbox"]:checked');
 
