@@ -5,6 +5,12 @@ let db;
 const checkboxes = document.getElementById('checkBoxes');
 const tableDataElements = document.querySelectorAll('td');
 
+const modal = My$.modal({
+  content: `
+  <p>Are You sure You want to delete "Retrospective" event?</p>
+`,
+});
+
 window.addEventListener('load', () => {
   const openRequest = indexedDB.open('calendar', 1);
 
@@ -31,12 +37,6 @@ window.addEventListener('load', () => {
     const { currentTarget } = e;
     const { target } = e;
 
-    const modal = My$.modal({
-      content: `
-			<p>Are You sure You want to delete "Retrospective" event?</p>
-		`,
-    });
-
     modal.open();
 
     const yesBtn = document.querySelector('#yes');
@@ -55,12 +55,10 @@ window.addEventListener('load', () => {
 	  };
 
       modal.close();
-      modal.destroy();
     });
 
     noBtn.addEventListener('click', () => {
       modal.close();
-      modal.destroy();
     });
   }
 

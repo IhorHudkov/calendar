@@ -46,9 +46,5 @@ My$.modal = (options) => {
         closing = false;
       }, ANIMATION_SPEED);
     },
-
-    destroy() {
-      $modal.parentNode.removeChild($modal);
-    },
   };
 };
