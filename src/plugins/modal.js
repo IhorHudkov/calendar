@@ -8,10 +8,6 @@ function createModal(options) {
      <div class="modal-overlay">
         <div class="modal-window">
             ${options.content || ''}
-            <div class="modal-buttons">
-                <button type="button" class="btn btn-danger" id="yes">Yes</button>
-                <button type="button" class="btn btn-outline-dark" id="no">No!</button>
-            </div>
         </div>
      </div> 
     `);

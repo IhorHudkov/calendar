@@ -1,4 +1,6 @@
 import './styles/index.scss';
+import authModal from './auth-modal';
+import allUsers from './create-users';
 
 let db;
 
@@ -7,11 +9,38 @@ const tableDataElements = document.querySelectorAll('td');
 
 const modal = My$.modal({
   content: `
-  <p>Are You sure You want to delete "Retrospective" event?</p>
-`,
+    <p>Are You sure You want to delete "Retrospective" event?</p>
+    <div class="modal-buttons">
+      <button type="button" class="btn btn-danger" id="yes">Yes</button>
+      <button type="button" class="btn btn-outline-dark" id="no">No!</button>
+    </div>
+  `,
 });
 
 window.addEventListener('load', () => {
+  authModal.open();
+
+  const confirmBtn = document.querySelector('#confirm');
+
+  confirmBtn.onclick = () => {
+    const currentUser = document.querySelector('#auth-select>option:checked').value;
+    let userRole;
+
+    if (currentUser !== 'Select a name') {
+      userRole = allUsers.find((user) => {
+        if (user.name === currentUser) return user;
+        return false;
+      }).role;
+      console.log(userRole);
+      authModal.close();
+    }
+
+    if (userRole === 'user') {
+      document.querySelector('#new-event-btn').style.display = 'none';
+      document.querySelector('.select-names').style.marginRight = 0;
+    }
+  };
+
   const openRequest = indexedDB.open('calendar', 1);
 
   openRequest.onupgradeneeded = () => {

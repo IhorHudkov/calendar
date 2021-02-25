@@ -17,7 +17,9 @@
         "no-tabs":"off",
         "no-undef": "off",
         "no-restricted-syntax": "off",
-        "no-bitwise": "off"
+        "no-bitwise": "off",
+        "no-underscore-dangle": "off",
+        "linebreak-style": "off"
     },
     "settings": {
         "import/resolver": "webpack"
