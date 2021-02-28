@@ -5,7 +5,7 @@
     <a href="https://github.com/IhorHudkov/calendar/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/IhorHudkov/calendar?style=plastic"></a>
     <a href="https://github.com/IhorHudkov/calendar/network"><img alt="GitHub forks" src="https://img.shields.io/github/forks/IhorHudkov/calendar?style=plastic"></a>
     <a href="https://github.com/IhorHudkov/calendar/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/IhorHudkov/calendar?style=plastic"></a>
-    <a href="https://github.com/IhorHudkov/calendar"><img alt="GitHub license" src="https://img.shields.io/github/license/IhorHudkov/calendar?style=plastic"></a>
+    <a href="https://github.com/IhorHudkov/calendar/blob/master/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/IhorHudkov/calendar?style=plastic"></a>
 </p>
 
 ### This is a simple meeting planning calendar for a meeting room in your office
