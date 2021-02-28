@@ -18,29 +18,6 @@ const modal = My$.modal({
 });
 
 window.addEventListener('load', () => {
-  authModal.open();
-
-  const confirmBtn = document.querySelector('#confirm');
-
-  confirmBtn.onclick = () => {
-    const currentUser = document.querySelector('#auth-select>option:checked').value;
-    let userRole;
-
-    if (currentUser !== 'Select a name') {
-      userRole = allUsers.find((user) => {
-        if (user.name === currentUser) return user;
-        return false;
-      }).role;
-      console.log(userRole);
-      authModal.close();
-    }
-
-    if (userRole === 'user') {
-      document.querySelector('#new-event-btn').style.display = 'none';
-      document.querySelector('.select-names').style.marginRight = 0;
-    }
-  };
-
   const openRequest = indexedDB.open('calendar', 1);
 
   openRequest.onupgradeneeded = () => {
@@ -130,7 +107,7 @@ window.addEventListener('load', () => {
           tdContent.classList.add('td-content');
           deleteBtn.classList.add('td__delete-btn');
 
-          deleteBtn.onclick = deleteItem;
+          deleteBtn.addEventListener('click', deleteItem);
         }
 	  cursor.continue();
       }
@@ -196,5 +173,54 @@ window.addEventListener('load', () => {
       td.addEventListener('dragstart', drag);
       td.addEventListener('drop', drop);
     });
+
+    authModal.open();
+
+    const selectEl = document.querySelector('#auth-select');
+
+    const getSelectedUser = () => {
+      const $selectedUser = document.querySelector('#auth-select>option:checked').value;
+      let selectedUser;
+
+      if ($selectedUser !== 'Select a name') {
+        selectedUser = allUsers.find((user) => {
+          if (user.name === $selectedUser) return user;
+          return false;
+        });
+      }
+      return selectedUser;
+    };
+
+    selectEl.onchange = () => {
+      document.getElementById('role').innerText = `Role: ${getSelectedUser() ? getSelectedUser().role : ''}`;
+    };
+
+    const confirmBtn = document.querySelector('#confirm');
+
+    confirmBtn.onclick = () => {
+      let userRole;
+
+      if (getSelectedUser()) {
+        userRole = getSelectedUser().role;
+        authModal.close();
+      }
+
+      if (userRole === 'user') {
+        document.querySelector('#new-event-btn').style.display = 'none';
+        document.querySelector('.select-names').style.marginRight = 0;
+
+        tableDataElements.forEach((td) => {
+          td.removeEventListener('dragover', allowDrop);
+          td.removeEventListener('dragstart', drag);
+          td.removeEventListener('drop', drop);
+        });
+
+        const delBtns = document.querySelectorAll('.td__delete-btn');
+        console.log(delBtns);
+        for (const delBtn of delBtns) {
+          delBtn.style.display = 'none';
+        }
+      }
+    };
   };
 });

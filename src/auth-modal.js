@@ -11,6 +11,7 @@ const options = () => {
 const authModal = My$.modal({
   content: `
     <p>Please, authorise</p>
+    <p id="role"></p>
     <select class="form-select form-select-lg mb-3" id="auth-select">
         <option selected>Select a name</option>
         ${options()}

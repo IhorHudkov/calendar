@@ -4,12 +4,11 @@ import Admin from './models/admin';
 const namesOfAllUsers = ['Jhon', 'Mila', 'Sam', 'Molly', 'Garry', 'Lisa', 'Mike'];
 const allUsers = [];
 
-for (const name of namesOfAllUsers) {
-  const isAdmin = Math.floor(Math.random() * 2);
-  if (isAdmin) {
-    allUsers.push(new Admin(name));
+for (let i = 0; i < namesOfAllUsers.length; i += 1) {
+  if (i < 3) {
+    allUsers.push(new Admin(namesOfAllUsers[i]));
   } else {
-    allUsers.push(new User(name));
+    allUsers.push(new User(namesOfAllUsers[i]));
   }
 }
 
