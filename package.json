@@ -15,7 +15,7 @@
     "js"
   ],
   "author": "Ihor Hudkov <gudkov.igor@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^7.0.0",
