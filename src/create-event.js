@@ -1,3 +1,4 @@
+import CalendarEvent from './models/event';
 import './styles/create-event.scss';
 
 const form = document.forms.eventForm;
@@ -32,32 +33,7 @@ const isTimeInputCorrect = () => {
   return true;
 };
 
-let db;
-
 window.onload = () => {
-  const openRequest = indexedDB.open('calendar', 1);
-
-  openRequest.onupgradeneeded = () => {
-    db = openRequest.result;
-    const eventStore = db.createObjectStore('events', {
-      keyPath: 'id',
-      autoIncrement: true,
-    });
-    eventStore.createIndex('name', 'name', { unique: false });
-    eventStore.createIndex('participants', 'participants', { unique: false });
-    eventStore.createIndex('dayTime', 'dayTime', { unique: true });
-    console.log('Database setup complete');
-  };
-
-  openRequest.onerror = () => {
-    console.error('Error', openRequest.error);
-  };
-
-  openRequest.onsuccess = () => {
-    console.log('Database opened succesfully');
-    db = openRequest.result;
-  };
-
   form.onsubmit = (e) => {
     e.preventDefault();
 
@@ -72,32 +48,28 @@ window.onload = () => {
       participants.push(label.textContent.trim());
     });
 
-    const event = {
+    const newEvent = {
       name: nameInput.value,
       participants,
-      dayTime: `${dayInput.value} ${timeInput.value}`,
+      dayTime: `${dayInput.value} ${timeInput.value}`
     };
 
-    const transaction = db.transaction(['events'], 'readwrite');
+    const event = new CalendarEvent(newEvent);
 
-    const eventStore = transaction.objectStore('events');
-
-    const addRequest = eventStore.add(event);
-    addRequest.onsuccess = () => {
-      nameInput.value = '';
-      dayInput.value = 'Choose...';
-      timeInput.value = 'Choose...';
-    };
-
-    transaction.oncomplete = () => {
-      console.log('Transaction completed: database modification finished.');
-      window.location.href = 'index.html';
-    };
-
-    transaction.onerror = () => {
-      const errHeader = document.querySelector('.error-msg');
-      errHeader.setAttribute('style', 'display: block;');
-      console.log('Transaction not opened due to error');
-    };
+    event.createEvent()
+      .then(
+        () => {
+          nameInput.value = '';
+          dayInput.value = 'Choose...';
+          timeInput.value = 'Choose...';
+          alert('Event was successfully added to the calendar');
+          window.location.href = 'index.html';
+        },
+        (error) => {
+          console.log(error.message);
+          const errHeader = document.querySelector('.error-msg');
+          errHeader.setAttribute('style', 'display: block;');
+        }
+      );
   };
 };
