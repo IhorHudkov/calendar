@@ -26,8 +26,14 @@ window.addEventListener('load', () => {
     const yesBtn = document.querySelector('#yes');
     const noBtn = document.querySelector('#no');
 
-    yesBtn.addEventListener('click', () => {
-	  const eventId = currentTarget.parentNode.getAttribute('id');
+    const noBtnClickHandler = () => {
+      modal.close();
+      yesBtn.removeEventListener('click', yesBtnClickHandler);
+      noBtn.removeEventListener('click', noBtnClickHandler);
+    };
+
+    const yesBtnClickHandler = () => {
+      const eventId = currentTarget.parentNode.getAttribute('id');
 
       CalendarEvent.deleteEvent(eventId)
         .then(
@@ -35,22 +41,27 @@ window.addEventListener('load', () => {
             if (ok) {
               target.parentNode.remove();
               modal.close();
+              console.log(eventId);
               alert('Event successfully deleted!');
             } else {
               modal.close();
               alert('Something went wrong!');
             }
+            yesBtn.removeEventListener('click', yesBtnClickHandler);
+            noBtn.removeEventListener('click', noBtnClickHandler);
           },
           (error) => {
             modal.close();
             alert(error.message);
+            yesBtn.removeEventListener('click', yesBtnClickHandler);
+            noBtn.removeEventListener('click', noBtnClickHandler);
           }
         );
-    });
+    };
 
-    noBtn.addEventListener('click', () => {
-      modal.close();
-    });
+    yesBtn.addEventListener('click', yesBtnClickHandler);
+
+    noBtn.addEventListener('click', noBtnClickHandler);
   }
 
   function fillCalendar(allMembers) {

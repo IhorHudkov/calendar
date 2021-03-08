@@ -25,7 +25,8 @@
         "no-alert": "off",
         "class-methods-use-this":"off",
         "no-unused-expressions":"off",
-        "prefer-template":"off"
+        "prefer-template":"off",
+        "no-use-before-define":"off"
     },
     "settings": {
         "import/resolver": "webpack"
