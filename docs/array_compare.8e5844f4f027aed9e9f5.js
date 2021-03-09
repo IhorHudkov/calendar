@@ -1,1 +1,0 @@
-Object.assign(My$,{arrCompare:(r,e)=>{if(r.length!==e.length)return!1;for(let t=0;t<r.length;t+=1)if(r[t]!==e[t])return!1;return!0}});

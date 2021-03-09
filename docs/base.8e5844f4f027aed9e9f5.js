@@ -1,1 +1,0 @@
-My$={},window.My$=My$;

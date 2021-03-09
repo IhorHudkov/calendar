@@ -1,5 +1,5 @@
-import CalendarEvent from './models/event';
 import './styles/create-event.scss';
+import { restClient } from './models/client';
 
 const form = document.forms.eventForm;
 const nameInput = form.name;
@@ -54,9 +54,7 @@ window.onload = () => {
       dayTime: `${dayInput.value} ${timeInput.value}`
     };
 
-    const event = new CalendarEvent(newEvent);
-
-    event.createEvent()
+    restClient.create('events', newEvent)
       .then(
         () => {
           nameInput.value = '';

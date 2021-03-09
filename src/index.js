@@ -2,6 +2,7 @@ import './styles/index.scss';
 import authModal from './auth-modal';
 import allUsers from './create-users';
 import CalendarEvent from './models/event';
+import { restClient } from './models/client';
 
 const checkboxes = document.getElementById('checkBoxes');
 const tableDataElements = document.querySelectorAll('td');
@@ -35,7 +36,7 @@ window.addEventListener('load', () => {
     const yesBtnClickHandler = () => {
       const eventId = currentTarget.parentNode.getAttribute('id');
 
-      CalendarEvent.deleteEvent(eventId)
+      restClient.delete('events', eventId)
         .then(
           (ok) => {
             if (ok) {
@@ -73,7 +74,7 @@ window.addEventListener('load', () => {
       selectedParticipants.push(label.textContent.trim());
     });
 
-    CalendarEvent.getAllEvents()
+    restClient.getAll('events')
       .then(
         (allEvents) => {
           if (allEvents) {
@@ -152,7 +153,7 @@ window.addEventListener('load', () => {
       )
       .then(
         (result) => {
-          CalendarEvent.updateEvent(result.desiredEvent.id, result.newData)
+          restClient.update('events', result.desiredEvent.id, result.newData)
             .then(
               (ok) => { ok ? alert('Successfully updated!') : alert('Something went wrong :('); },
               (error) => {
