@@ -1,14 +1,15 @@
 {
     "env": {
         "browser": true,
-        "es2017": true,
+        "es2020": true,
         "node": true
     },
     "extends": [
         "airbnb-base"
     ],
+    "parser": "babel-eslint",
     "parserOptions": {
-        "ecmaVersion": 8,
+        "ecmaVersion": 11,
         "sourceType": "module"
     },
     "rules": {
@@ -27,7 +28,9 @@
         "no-unused-expressions":"off",
         "prefer-template":"off",
         "no-use-before-define":"off",
-        "import/prefer-default-export": "off"
+        "import/prefer-default-export": "off",
+        "no-param-reassign":"off",
+        "func-names":"off"
     },
     "settings": {
         "import/resolver": "webpack"

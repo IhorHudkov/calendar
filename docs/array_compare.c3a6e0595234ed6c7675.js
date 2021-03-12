@@ -1,0 +1,1 @@
+Object.assign(My$,{arrCompare:function(r,n){if(r.length!==n.length)return!1;for(var e=0;e<r.length;e+=1)if(r[e]!==n[e])return!1;return!0}});

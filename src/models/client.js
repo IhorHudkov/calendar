@@ -1,3 +1,15 @@
+const Catch = function (target, key, descriptor) {
+  const originalMethod = descriptor.value;
+  descriptor.value = function (...args) {
+    const result = originalMethod.apply(this, args);
+    return result.catch((error) => {
+      console.log('CatchDecorator: ', error.message);
+      throw new Error();
+    });
+  };
+  return descriptor;
+};
+
 class Client {
   constructor() {
     if (Client.exists) {
@@ -9,12 +21,14 @@ class Client {
     this.url = 'http://158.101.166.74:8080/api/data/ihor_hudkov/';
   }
 
+  @Catch
   async getAll(entity) {
     const response = await fetch(`${this.url}${entity}`);
     const result = await response.json();
     return result;
   }
 
+  @Catch
   async create(entity, data) {
     const allRecords = await this.getAll(entity);
 
@@ -45,11 +59,13 @@ class Client {
     return result;
   }
 
+  @Catch
   async delete(entity, id) {
     const response = await fetch(`${this.url}${entity}/${id}`, { method: 'DELETE' });
     return response.ok;
   }
 
+  @Catch
   async update(entity, id, data) {
     const response = await fetch(`${this.url}${entity}/${id}`, {
       method: 'PUT',
